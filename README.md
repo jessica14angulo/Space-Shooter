@@ -1,6 +1,6 @@
 # Space-Shooter
 
-Space-Shooter is a game where you have to shoot the enemy spaceships using lasers you can shoot. Can you destroy all the enemies with your laser before they reach you?
+Space-Shooter is a game where you have to shoot/dodge the enemy spaceships using lasers. Can you dodge and destroy all the enemies with your laser before they reach you?
 
 ## Getting Started
 

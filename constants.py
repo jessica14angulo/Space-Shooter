@@ -5,17 +5,17 @@ import os
 # window/Screen dimensions
 WIDTH, HEIGHT = 1000, 700
 # Window: display, size, and caption
-WIN = pygame.display.set_mode((WIDTH, HEIGHT))
-pygame.display.set_caption("Space Shooter")
+# WIN = pygame.display.set_mode((WIDTH, HEIGHT))
+# pygame.display.set_caption("Space Shooter")
 
 
 # Load images
 ENEMY_1 = pygame.image.load(
     os.path.join("game", "assets", "space1.png"))
 ENEMY_2 = pygame.image.load(
-    os.path.join("assets", "space2.png"))
+    os.path.join("game", "assets", "space2.png"))
 ENEMY_3 = pygame.image.load(
-    os.path.join("assets", "space3.png"))
+    os.path.join("game", "assets", "space3.png"))
 
 # Player player
 SPACE_SHIP = pygame.image.load(os.path.join("game", "assets", "space4.png"))

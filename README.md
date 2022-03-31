@@ -43,10 +43,13 @@ root                    (project root folder)
 
 ## Rules
 
-- The Player can move from left to right.
-- The Player try to shoot so the opponent collides with their laser.
+- The Player can move from left to right, and up and down.
+- The Player tries to shoot so the opponent collides with its laser while avoid opposing laser shots.
 - If an enemy collides with your laser it dies.
-- If you kill all the enemy spaceships...YOU WIN!
+- If Player gets hit by the enemy's laser, it loses points on the ship's healthbar.
+- If the healthbar runs out of green, YOU LOSE!
+- If more than 5 enemies get to the end of the screen, YOU LOSE!
+- If you kill all the enemy spaceships, you move on to the next level!
 
 ## Requirements
 

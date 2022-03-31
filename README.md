@@ -1,7 +1,9 @@
 # Space-Shooter
+
 Space-Shooter is a game where you have to shoot the enemy spaceships using lasers you can shoot. Can you destroy all the enemies with your laser before they reach you?
 
 ## Getting Started
+
 Make sure you have Python 3.8.0 or newer and Pygame installed and running on your machine. You can install Pygame by opening a terminal and running the following command.
 ```
 For Mac:

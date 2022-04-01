@@ -6,6 +6,8 @@ from game.player import Player
 from game.collide import Collide as collide
 from game.health_pack import Healthpack
 
+
+# Initializes font from the pygame library.
 pygame.font.init()
 
 # Window: display, size, and caption
@@ -24,18 +26,20 @@ def main():
     main_font = pygame.font.SysFont("Montserrat", 25)
     lost_font = pygame.font.SysFont("Montserrat", 25)
 
+    """Set Variables"""
+
+    # Stores the enemies and number of ships per wave.
     enemies = []
     wave_length = 12
+    # All Velocities are set in Pixels, meaning that every time an object moves it moves in pixels by second.
     enemy_vel = 1
-
     player_vel = 8
     laser_vel = 8
-
     healthpack_vel = 2
+
     health_packs = []
     level_count_req = 2
     health_pack_req = 0
-    
 
     player = Player(300, 630)
 
@@ -46,7 +50,10 @@ def main():
 
     def redraw_window():
         WIN.blit(BG, (0, 0))
-        # draw text
+
+        """ Draws texts on the screen: Lives and Level, and sets the color of it in the RGB format 
+        (Red,Green,Blue)"""
+
         lives_label = main_font.render(f"Lives: {lives}", 1, (255, 255, 255))
         level_label = main_font.render(f"Level: {level}", 1, (255, 255, 255))
 
@@ -56,7 +63,7 @@ def main():
         for enemy in enemies:
             enemy.draw(WIN)
 
-        for healthpack in health_packs :
+        for healthpack in health_packs:
             healthpack.draw(WIN)
 
         player.draw(WIN)
@@ -71,7 +78,7 @@ def main():
         clock.tick(FPS)  # sets the clock speed at 60 FPS
         redraw_window()
 
-        if player.health <= 0: 
+        if player.health <= 0:
             lives -= 1
             player.health = 100
 
@@ -94,21 +101,29 @@ def main():
                 enemies.append(enemy)
 
         if len(health_packs) == health_pack_req and level == level_count_req:
-            healthpack = Healthpack(random.randrange(50, WIDTH-100), random.randrange(-1500, -100))
+            healthpack = Healthpack(random.randrange(
+                50, WIDTH-100), random.randrange(-1500, -100))
             level_count_req += 1
             health_packs.append(healthpack)
 
+        """Loop runs the variables 60 times per second"""
         for event in pygame.event.get():  # Checks for event
             if event.type == pygame.QUIT:  # If user clicks on x of the window, quits the game
                 quit()
 
+        """Keyboard Service"""
+        # calls for the key dictionary of pygame
         keys = pygame.key.get_pressed()
+
+        """Assign Keys and the velocity of the object"""
         if keys[pygame.K_LEFT] and player.x - player_vel > 0:  # left
             player.x -= player_vel
+        """WIDTH restricts movement outside of the width of the screen"""
         if keys[pygame.K_RIGHT] and player.x + player_vel + player.get_width() < WIDTH:  # right
             player.x += player_vel
         if keys[pygame.K_UP] and player.y - player_vel > 0:  # up
             player.y -= player_vel
+        """HEIGHT restricts movement out of the height of the screen"""
         if keys[pygame.K_DOWN] and player.y + player_vel + player.get_height() + 15 < HEIGHT:  # down
             player.y += player_vel
         if keys[pygame.K_SPACE]:
@@ -131,7 +146,7 @@ def main():
         for healthpack in health_packs:
             healthpack.move(healthpack_vel)
 
-            if collide.collide(healthpack, player) :
+            if collide.collide(healthpack, player):
                 player.health += 10
                 health_packs.remove(healthpack)
             elif healthpack.y + healthpack.get_height() > HEIGHT:

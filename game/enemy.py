@@ -5,6 +5,7 @@ from game.laser import Laser
 
 
 class Enemy(Ship):
+    """Creates dictionary of enemies and asigns laser color image"""
     COLOR_MAP = {
         "red": (ENEMY_1, RED_LASER),
         "green": (ENEMY_2, GREEN_LASER),
@@ -15,6 +16,8 @@ class Enemy(Ship):
         super().__init__(x, y, health)
         self.ship_img, self.laser_img = self.COLOR_MAP[color]
         self.mask = pygame.mask.from_surface(self.ship_img)
+
+    """sets the movement of the enemy ships to the Y axis of the screen."""
 
     def move(self, vel):
         self.y += vel

@@ -4,10 +4,22 @@ from constants import *
 
 
 class Player(Ship):
+    # Initiantes all functions from the Ship class
     def __init__(self, x, y, health=100):
         super().__init__(x, y, health)
+
+        """
+        Polymorphism applied to the images of the spaceship and laser 
+        from the variables inherited from the Ship class' functions and 
+        changes them to what the Player's spaceship will need
+        """
         self.ship_img = SPACE_SHIP
         self.laser_img = YELLOW_LASER
+
+        """
+        Applies mask to the images of the spaceship to handdle the empty
+        space from the png image, allowing pixel perfect collision.
+        """
         self.mask = pygame.mask.from_surface(self.ship_img)
         self.max_health = health
 

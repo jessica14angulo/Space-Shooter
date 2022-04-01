@@ -92,6 +92,7 @@ def main():
             else:
                 continue
 
+        """Spawns enemies randomly from the Y axis outsie the top of the screen"""
         if len(enemies) == 0:
             level += 1
             wave_length += 5

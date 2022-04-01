@@ -131,7 +131,7 @@ def main():
         for healthpack in health_packs:
             healthpack.move(healthpack_vel)
 
-            if collide(healthpack, player) :
+            if collide.collide(healthpack, player) :
                 player.health += 10
                 health_packs.remove(healthpack)
             elif healthpack.y + healthpack.get_height() > HEIGHT:

@@ -6,15 +6,20 @@ from constants import *
 class Ship:
     COOLDOWN = 10  # The cooldown determines the time between laser shots
     # The higher the number, the slower your lasers are.
+    """ Sets all the variables with the parameters that will be user for the Spaceships of the game"""
 
     def __init__(self, x, y, health=100):
         self.x = x
         self.y = y
         self.health = health
+        # I mages are not defined on these variables so that the code could be reused for possible updates, and also inherited in the Player class and Enemy class.
         self.ship_img = None
         self.laser_img = None
+
         self.lasers = []
         self.cool_down_counter = 0
+
+    """Draw Ship images on the screen"""
 
     def draw(self, window):
         window.blit(self.ship_img, (self.x, self.y))
@@ -42,6 +47,14 @@ class Ship:
             laser = Laser(self.x, self.y, self.laser_img)
             self.lasers.append(laser)
             self.cool_down_counter = 2
+
+    """
+    Getter methods to get the width and hight of the variable ship_img.
+    The width and height is used in the re_draw window function which is
+    nested in the main function, and in the keyService, also in the main
+    function to restrict images from showing outside of the window width
+    and height.
+    """
 
     def get_width(self):
         return self.ship_img.get_width()

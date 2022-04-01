@@ -9,13 +9,13 @@ WIDTH, HEIGHT = 1000, 700
 # pygame.display.set_caption("Space Shooter")
 
 
-# Load images
-ENEMY_1 = pygame.image.load(
-    os.path.join("game", "assets", "space1.png"))
-ENEMY_2 = pygame.image.load(
-    os.path.join("game", "assets", "space2.png"))
-ENEMY_3 = pygame.image.load(
-    os.path.join("game", "assets", "space3.png"))
+"""Load images"""
+
+# Enemy Images
+ENEMY_1 = pygame.image.load(os.path.join("game", "assets", "space1.png"))
+ENEMY_2 = pygame.image.load(os.path.join("game", "assets", "space2.png"))
+ENEMY_3 = pygame.image.load(os.path.join("game", "assets", "space3.png"))
+BOSS_IMAGE = pygame.image.load(os.path.join("game", "assets", "boss.png"))
 
 # Player player
 SPACE_SHIP = pygame.image.load(os.path.join("game", "assets", "space4.png"))

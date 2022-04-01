@@ -6,7 +6,9 @@ from pygame import mixer
 pygame.mixer.pre_init(44100, -16, 2, 512)
 mixer.init()
 
+
 class Ship:
+
     COOLDOWN = 10  # The cooldown determines the time between laser shots
     # The higher the number, the slower your lasers are.
     """ Sets all the variables with the parameters that will be user for the Spaceships of the game"""
@@ -29,6 +31,12 @@ class Ship:
         for laser in self.lasers:
             laser.draw(window)
 
+    def cooldown(self):
+        if self.cool_down_counter >= self.COOLDOWN:
+            self.cool_down_counter = 0
+        elif self.cool_down_counter > 0:
+            self.cool_down_counter += 1
+
     def move_lasers(self, vel, obj):
         self.cooldown()
         for laser in self.lasers:
@@ -38,12 +46,6 @@ class Ship:
             elif laser.collision(obj):
                 obj.health -= 10
                 self.lasers.remove(laser)
-
-    def cooldown(self):
-        if self.cool_down_counter >= self.COOLDOWN:
-            self.cool_down_counter = 0
-        elif self.cool_down_counter > 0:
-            self.cool_down_counter += 1
 
     def shoot(self):
         if self.cool_down_counter == 0:

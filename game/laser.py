@@ -1,5 +1,5 @@
 import pygame
-from game.collide import collide
+from game.collide import Collide as collide
 
 
 class Laser:
@@ -19,4 +19,4 @@ class Laser:
         return not(self.y <= height and self.y >= 0)
 
     def collision(self, obj):
-        return collide(self, obj)
+        return collide.collide(self, obj)

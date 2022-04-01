@@ -3,7 +3,7 @@ from constants import *
 import random
 from game.enemy import Enemy
 from game.player import Player
-from game.collide import collide
+from game.collide import Collide as collide
 from game.health_pack import Healthpack
 
 pygame.font.init()
@@ -121,7 +121,7 @@ def main():
             if random.randrange(0, 2*60) == 1:
                 enemy.shoot()
 
-            if collide(enemy, player):
+            if collide.collide(enemy, player):
                 player.health -= 10
                 enemies.remove(enemy)
             elif enemy.y + enemy.get_height() > HEIGHT:

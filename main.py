@@ -153,6 +153,9 @@ def main():
                 enemies.remove(enemy)
             elif enemy.y + enemy.get_height() > HEIGHT:
                 lives -= 1
+                explotion_fx = pygame.mixer.Sound("game/sounds/explotion.wav")
+                explotion_fx.set_volume(0.25)
+                explotion_fx.play()
                 enemies.remove(enemy)
 
         for healthpack in health_packs:
@@ -160,6 +163,9 @@ def main():
 
             if collide.collide(healthpack, player):
                 player.health += 10
+                ting_fx = pygame.mixer.Sound("game/sounds/ting.wav")
+                ting_fx.set_volume(0.25)
+                ting_fx.play()
                 health_packs.remove(healthpack)
             elif healthpack.y + healthpack.get_height() > HEIGHT:
                 health_packs.remove(healthpack)

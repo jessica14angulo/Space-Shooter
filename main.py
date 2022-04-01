@@ -6,6 +6,8 @@ from game.player import Player
 from game.collide import Collide as collide
 from game.health_pack import Healthpack
 from pygame import mixer
+from game.boss import Boss
+
 
 # Initializes mixer from the pygame library.
 pygame.mixer.pre_init(44100, -16, 2, 512)
@@ -38,10 +40,13 @@ def main():
     wave_length = 12
     # All Velocities are set in Pixels, meaning that every time an object moves it moves in pixels by second.
     enemy_vel = 1
+    boss_vel = 1
     player_vel = 8
     laser_vel = 8
     healthpack_vel = 2
 
+    bosses = []
+    bosses_req = 0
     health_packs = []
     level_count_req = 2
     health_pack_req = 0
@@ -109,6 +114,13 @@ def main():
                     50, WIDTH-100), random.randrange(-1500, -100), random.choice(["red", "blue", "green"]))
                 enemies.append(enemy)
 
+        """Final Boss Coming soon"""
+        # if len(bosses) == bosses_req and level == level_count_req:
+        #     boss = Boss(random.randrange(
+        #         50, WIDTH-100), random.randrange(-1500, -100), (["boss_red"]))
+        #     level_count_req += 1
+        #     boss.append(boss)
+
         if len(health_packs) == health_pack_req and level == level_count_req:
             healthpack = Healthpack(random.randrange(
                 50, WIDTH-100), random.randrange(-1500, -100))
@@ -157,6 +169,25 @@ def main():
                 explotion_fx.set_volume(SOUNDS_VOLUME)
                 explotion_fx.play()
                 enemies.remove(enemy)
+
+        for boss in bosses:
+            boss.move(boss_vel)
+            enemy.move_lasers(laser_vel, player)
+
+            if random.randrange(0, 2*30) == 1:
+                boss.shoot()
+            if collide.collide(boss, player):
+                player.health -= 30
+                explotion_fx = pygame.mixer.Sound(EXPLOTION_SOUND)
+                explotion_fx.set_volume(SOUNDS_VOLUME)
+                explotion_fx.play()
+                enemies.remove(boss)
+            elif boss.y + boss.get_height() > HEIGHT:
+                lives -= 2
+                explotion_fx = pygame.mixer.Sound(EXPLOTION_SOUND)
+                explotion_fx.set_volume(SOUNDS_VOLUME)
+                explotion_fx.play()
+                enemies.remove(boss)
 
         for healthpack in health_packs:
             healthpack.move(healthpack_vel)

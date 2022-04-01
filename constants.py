@@ -35,3 +35,13 @@ YELLOW_LASER = pygame.image.load(
 # Background
 BG = pygame.transform.scale(pygame.image.load(
     os.path.join("game", "assets", "background-black.png")), (WIDTH, HEIGHT))
+
+#Sounds paths
+START_SOUND = "game/sounds/start.wav"
+LASER_SOUND = "game/sounds/laser.wav"
+EXPLOTION_SOUND = "game/sounds/explotion.wav"
+OVER_SOUND = "sounds/over.wav"
+HEALTH_SOUND = "game/sounds/ting.wav"
+
+SOUNDS_VOLUME = 0.25
+START_VOLUME = 0.10

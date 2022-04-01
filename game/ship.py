@@ -51,7 +51,7 @@ class Ship:
             self.lasers.append(laser)
             self.cool_down_counter = 2
 
-            laser_fx = pygame.mixer.Sound("game/sounds/laser.wav")
+            laser_fx = pygame.mixer.Sound(LASER_SOUND)
             laser_fx.set_volume(0.25)
             laser_fx.play()
 

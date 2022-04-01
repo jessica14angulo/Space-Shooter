@@ -74,8 +74,8 @@ def main():
         player.draw(WIN)
 
         if lost:
-            over_fx = pygame.mixer.Sound("game/sounds/over.wav")
-            over_fx.set_volume(0.25)
+            over_fx = pygame.mixer.Sound(OVER_SOUND)
+            over_fx.set_volume(SOUNDS_VOLUME)
             over_fx.play()
             lost_label = lost_font.render("You Lost!!", 1, (255, 255, 255))
             WIN.blit(lost_label, (WIDTH/2 - lost_label.get_width()/2, 350))
@@ -147,14 +147,14 @@ def main():
 
             if collide.collide(enemy, player):
                 player.health -= 10
-                explotion_fx = pygame.mixer.Sound("game/sounds/explotion.wav")
-                explotion_fx.set_volume(0.25)
+                explotion_fx = pygame.mixer.Sound(EXPLOTION_SOUND)
+                explotion_fx.set_volume(SOUNDS_VOLUME)
                 explotion_fx.play()
                 enemies.remove(enemy)
             elif enemy.y + enemy.get_height() > HEIGHT:
                 lives -= 1
-                explotion_fx = pygame.mixer.Sound("game/sounds/explotion.wav")
-                explotion_fx.set_volume(0.25)
+                explotion_fx = pygame.mixer.Sound(EXPLOTION_SOUND)
+                explotion_fx.set_volume(SOUNDS_VOLUME)
                 explotion_fx.play()
                 enemies.remove(enemy)
 
@@ -163,8 +163,8 @@ def main():
 
             if collide.collide(healthpack, player):
                 player.health += 10
-                ting_fx = pygame.mixer.Sound("game/sounds/ting.wav")
-                ting_fx.set_volume(0.25)
+                ting_fx = pygame.mixer.Sound(HEALTH_SOUND)
+                ting_fx.set_volume(SOUNDS_VOLUME)
                 ting_fx.play()
                 health_packs.remove(healthpack)
             elif healthpack.y + healthpack.get_height() > HEIGHT:
@@ -181,8 +181,8 @@ def main_menu():
         title_label = title_font.render(
             "Press the mouse to begin...", 1, (255, 255, 255))
         WIN.blit(title_label, (WIDTH/2 - title_label.get_width()/2, 350))
-        start_fx = pygame.mixer.Sound("game/sounds/start.wav")
-        start_fx.set_volume(0.10)
+        start_fx = pygame.mixer.Sound(START_SOUND)
+        start_fx.set_volume(START_VOLUME)
         start_fx.play()
         pygame.display.update()
         for event in pygame.event.get():

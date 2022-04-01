@@ -20,6 +20,9 @@ ENEMY_3 = pygame.image.load(
 # Player player
 SPACE_SHIP = pygame.image.load(os.path.join("game", "assets", "space4.png"))
 
+# health pack
+HEALTH_PACK = pygame.image.load (os.path.join("game", "assets", "health_pack.png"))
+
 # Lasers
 RED_LASER = pygame.image.load(os.path.join("game", "assets", "red_laser.png"))
 GREEN_LASER = pygame.image.load(

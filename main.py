@@ -4,6 +4,7 @@ import random
 from game.enemy import Enemy
 from game.player import Player
 from game.collide import collide
+from game.health_pack import Healthpack
 
 pygame.font.init()
 
@@ -30,6 +31,12 @@ def main():
     player_vel = 8
     laser_vel = 8
 
+    healthpack_vel = 2
+    health_packs = []
+    level_count_req = 2
+    health_pack_req = 0
+    
+
     player = Player(300, 630)
 
     clock = pygame.time.Clock()
@@ -49,6 +56,9 @@ def main():
         for enemy in enemies:
             enemy.draw(WIN)
 
+        for healthpack in health_packs :
+            healthpack.draw(WIN)
+
         player.draw(WIN)
 
         if lost:
@@ -61,7 +71,11 @@ def main():
         clock.tick(FPS)  # sets the clock speed at 60 FPS
         redraw_window()
 
-        if lives <= 0 or player.health <= 0:
+        if player.health <= 0: 
+            lives -= 1
+            player.health = 100
+
+        if lives <= 0:
             lost = True
             lost_count += 1
 
@@ -78,6 +92,11 @@ def main():
                 enemy = Enemy(random.randrange(
                     50, WIDTH-100), random.randrange(-1500, -100), random.choice(["red", "blue", "green"]))
                 enemies.append(enemy)
+
+        if len(health_packs) == health_pack_req and level == level_count_req:
+            healthpack = Healthpack(random.randrange(50, WIDTH-100), random.randrange(-1500, -100))
+            level_count_req += 1
+            health_packs.append(healthpack)
 
         for event in pygame.event.get():  # Checks for event
             if event.type == pygame.QUIT:  # If user clicks on x of the window, quits the game
@@ -108,6 +127,15 @@ def main():
             elif enemy.y + enemy.get_height() > HEIGHT:
                 lives -= 1
                 enemies.remove(enemy)
+
+        for healthpack in health_packs:
+            healthpack.move(healthpack_vel)
+
+            if collide(healthpack, player) :
+                player.health += 10
+                health_packs.remove(healthpack)
+            elif healthpack.y + healthpack.get_height() > HEIGHT:
+                health_packs.remove(healthpack)
 
         player.move_lasers(-laser_vel, enemies)
 

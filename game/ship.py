@@ -1,7 +1,10 @@
 import pygame
 from game.laser import Laser
 from constants import *
+from pygame import mixer
 
+pygame.mixer.pre_init(44100, -16, 2, 512)
+mixer.init()
 
 class Ship:
     COOLDOWN = 10  # The cooldown determines the time between laser shots
@@ -47,6 +50,10 @@ class Ship:
             laser = Laser(self.x, self.y, self.laser_img)
             self.lasers.append(laser)
             self.cool_down_counter = 2
+
+            laser_fx = pygame.mixer.Sound("game/sounds/laser.wav")
+            laser_fx.set_volume(0.25)
+            laser_fx.play()
 
     """
     Getter methods to get the width and hight of the variable ship_img.

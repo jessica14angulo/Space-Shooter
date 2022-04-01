@@ -5,6 +5,11 @@ from game.enemy import Enemy
 from game.player import Player
 from game.collide import Collide as collide
 from game.health_pack import Healthpack
+from pygame import mixer
+
+# Initializes mixer from the pygame library.
+pygame.mixer.pre_init(44100, -16, 2, 512)
+mixer.init()
 
 
 # Initializes font from the pygame library.
@@ -69,6 +74,9 @@ def main():
         player.draw(WIN)
 
         if lost:
+            over_fx = pygame.mixer.Sound("game/sounds/over.wav")
+            over_fx.set_volume(0.25)
+            over_fx.play()
             lost_label = lost_font.render("You Lost!!", 1, (255, 255, 255))
             WIN.blit(lost_label, (WIDTH/2 - lost_label.get_width()/2, 350))
 
@@ -139,6 +147,9 @@ def main():
 
             if collide.collide(enemy, player):
                 player.health -= 10
+                explotion_fx = pygame.mixer.Sound("game/sounds/explotion.wav")
+                explotion_fx.set_volume(0.25)
+                explotion_fx.play()
                 enemies.remove(enemy)
             elif enemy.y + enemy.get_height() > HEIGHT:
                 lives -= 1
@@ -164,6 +175,9 @@ def main_menu():
         title_label = title_font.render(
             "Press the mouse to begin...", 1, (255, 255, 255))
         WIN.blit(title_label, (WIDTH/2 - title_label.get_width()/2, 350))
+        start_fx = pygame.mixer.Sound("game/sounds/start.wav")
+        start_fx.set_volume(0.10)
+        start_fx.play()
         pygame.display.update()
         for event in pygame.event.get():
             if event.type == pygame.QUIT:

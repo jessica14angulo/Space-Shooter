@@ -177,7 +177,7 @@ def main():
             if random.randrange(0, 2*30) == 1:
                 boss.shoot()
             if collide.collide(boss, player):
-                player.health -= 30
+                player.health -= 100
                 explotion_fx = pygame.mixer.Sound(EXPLOTION_SOUND)
                 explotion_fx.set_volume(SOUNDS_VOLUME)
                 explotion_fx.play()

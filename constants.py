@@ -41,7 +41,7 @@ BG = pygame.transform.scale(pygame.image.load(os.path.join(
 START_SOUND = "game/sounds/start.wav"
 LASER_SOUND = "game/sounds/laser.wav"
 EXPLOTION_SOUND = "game/sounds/explotion.wav"
-OVER_SOUND = "sounds/over.wav"
+OVER_SOUND = "game/sounds/over.wav"
 HEALTH_SOUND = "game/sounds/ting.wav"
 
 SOUNDS_VOLUME = 0.25
